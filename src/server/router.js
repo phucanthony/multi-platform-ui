@@ -4,7 +4,13 @@ import { renderToString, renderToStaticMarkup } from 'react-dom/server';
 
 import App from '../';
 
-const router = Router();
+const router = Router(), production = process.env.ENV === 'production';
+let gitHash = 'nope';
+
+require('child_process').exec('git rev-parse HEAD', function(err, stdout) {
+	if (err) console.log(err);
+	else gitHash = stdout.toString().trim();
+});
 
 AppRegistry.registerComponent('App', () => App);
 
@@ -18,7 +24,7 @@ router.use('*', (req, res, next) => {
 		initialHtml = renderToString(element),
 		initialStyles = stylesheets.map(sheet => renderToStaticMarkup(sheet)).join('\n');
 
-	res.render('../index', { initialStyles, initialHtml, serverSide: true });
+	res.render('../index', { initialStyles, initialHtml, serverSide: true, production, gitHash });
 });
 
 module.exports = router;

@@ -3,11 +3,13 @@
   "version": "0.1.2",
   "private": true,
   "scripts": {
-    "start": "babel-node --inspect server.js",
+    "start": "ENV=production babel-node --inspect server.js",
     "test": "jest",
     "web-vendor": "webpack --config webpack.vendor.config.js --progress",
     "web": "node webpack.devserver",
-    "web-bundle": "ENV=prod webpack --config webpack.config.js --progress",
+    "clean-up": "rm -rf web/* && cp -R static/ web/",
+    "web-bundle": "ENV=production webpack --config webpack.config.js --progress",
+    "bundle": "yarn clean-up && yarn web-bundle",
     "ios": "react-native run-ios",
     "android": "react-native run-android"
   },

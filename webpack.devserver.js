@@ -9,33 +9,35 @@ const logMode = process.env.LOG;
 
 console.log('A magical force.. is raising at', ` localhost:${port} `.bgGreen, ':p');
 
-const compiler = webpack(config);
+config.then((webpackConfigs) => {
+	const compiler = webpack(webpackConfigs);
 
-new WebpackDevServer(compiler, {
-	publicPath: config.output.publicPath,
-	contentBase: 'web',
-	hot: true,
-	historyApiFallback: true,
-	headers: {
-		'Access-Control-Allow-Origin': '*',
-		'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
-		'Access-Control-Allow-Headers': 'X-Requested-With, content-type, Authorization'
-	},
-	stats: {
-		assets:         false,
-		colors:         true,
-		version:        false,
-		hash:           false,
-		timings:        false,
-		chunks:         true,
-		chunkModules:   !!logMode,
-	},
-	quiet: false,
-	noInfo: false,
-	reporter,
-}).listen(port, 'localhost', (err, result) => {
-	if (err) console.log(err);
-	return true;
+	new WebpackDevServer(compiler, {
+		publicPath: webpackConfigs.output.publicPath,
+		contentBase: 'web',
+		hot: true,
+		historyApiFallback: true,
+		headers: {
+			'Access-Control-Allow-Origin': '*',
+			'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
+			'Access-Control-Allow-Headers': 'X-Requested-With, content-type, Authorization'
+		},
+		stats: {
+			assets:         false,
+			colors:         true,
+			version:        false,
+			hash:           false,
+			timings:        false,
+			chunks:         true,
+			chunkModules:   !!logMode,
+		},
+		quiet: false,
+		noInfo: false,
+		reporter,
+	}).listen(port, 'localhost', (err, result) => {
+		if (err) console.log(err);
+		return true;
+	});
 });
 
 function reporter({ state, stats, options }) {

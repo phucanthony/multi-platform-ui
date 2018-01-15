@@ -70,8 +70,12 @@
   <% } %>
 
   <% if (typeof serverSide !== 'undefined') { %>
-		<script src="http://localhost:3000/vendor.bundle.js"></script>
-		<script src="http://localhost:3000/app.js"></script>
+  	<% if (typeof production !== 'undefined') { %>
+			<script src="app-<%=gitHash%>.js"></script>
+  	<% } else { %>
+			<script src="http://localhost:3000/vendor.bundle.js"></script>
+			<script src="http://localhost:3000/app.js"></script>
+  	<% } %>
   <% } %>
 </body>
 </html>

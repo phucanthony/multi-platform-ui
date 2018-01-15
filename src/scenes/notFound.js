@@ -3,6 +3,8 @@ import { View, Text, StyleSheet } from 'react-native';
 import { connect, Button } from 'react-universal-ui';
 import { push } from 'react-router-redux';
 
+import Layout from '../components/layout';
+
 type Props = {
 	dispatch?: Function,
 	location?: Object,
@@ -18,7 +20,7 @@ export default class NotFoundScene extends Component {
 	props: Props;
 
 	render() {
-		return <View style={styles.container}>
+		return <Layout style={styles.container}>
 			<Text style={styles.heading}>PAGE NOT FOUND!</Text>
 			<Text style={styles.message}>
 				Whoops, it seem the page you are looking for not exist or already removed!
@@ -27,7 +29,7 @@ export default class NotFoundScene extends Component {
 				title="TAKE ME HOME"
 				wrapperStyle={styles.buttonWrapper}
 				onPress={() => this.props.dispatch(push('/'))}/>
-		</View>;
+		</Layout>;
 	}
 }
 
