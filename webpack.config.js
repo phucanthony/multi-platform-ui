@@ -31,7 +31,9 @@ const plugins = [
 	}),
 ];
 
-if (env === 'dev') {
+if (prod) {
+	plugins.push(new webpack.optimize.UglifyJsPlugin());
+} else {
 	plugins.push(new webpack.HotModuleReplacementPlugin());
 	plugins.push(new webpack.NamedModulesPlugin());
 	plugins.push(new webpack.NoEmitOnErrorsPlugin());
