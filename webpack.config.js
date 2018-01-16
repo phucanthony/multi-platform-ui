@@ -64,7 +64,7 @@ module.exports = getRevisionPromise.then(gitHash => {
 		output: {
 			publicPath,
 			path: path.join(__dirname, 'web'),
-			filename: prod ? `[name]-${gitHash}.js` : 'app.js',
+			filename: prod ? `${gitHash}.js` : 'app.js',
 			chunkFilename: '[name].js',
 		},
 		resolve: {

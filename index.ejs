@@ -71,7 +71,7 @@
 
   <% if (typeof serverSide !== 'undefined') { %>
   	<% if (typeof production !== 'undefined' && production === true) { %>
-			<script src="app-<%=gitHash%>.js"></script>
+			<script src="<%=gitHash%>.js"></script>
   	<% } else { %>
 			<script src="http://localhost:3000/vendor.bundle.js"></script>
 			<script src="http://localhost:3000/app.js"></script>
