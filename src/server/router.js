@@ -3,6 +3,7 @@ import { AppRegistry } from 'react-native';
 import { renderToString, renderToStaticMarkup } from 'react-dom/server';
 
 import App from '../';
+import * as webpackConfigs from '../../webpack.config.babel';
 
 let gitHash = 'nope';
 const router = Router(),
@@ -25,7 +26,13 @@ router.use('*', (req, res, next) => {
 		initialHtml = renderToString(element),
 		initialStyles = stylesheets.map(sheet => renderToStaticMarkup(sheet)).join('\n');
 
-	res.render('../index', { initialStyles, initialHtml, serverSide: true, production, gitHash });
+	res.render('../index', {
+		initialStyles,
+		initialHtml,
+		serverSide: true,
+		production,
+		gitHash,
+		publicPath: webpackConfigs.output.publicPath,});
 });
 
 module.exports = router;
