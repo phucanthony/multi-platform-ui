@@ -9,7 +9,7 @@
 		"optimize": "better-npm-run optimize",
 		"clean-up": "rm -rf web/* && cp -R static/* web",
 		"web-bundle": "better-npm-run bundle",
-		"bundle": "yarn clean-up && npm web-bundle",
+		"bundle": "yarn clean-up && yarn web-bundle",
 		"ios": "react-native run-ios",
 		"android": "react-native run-android",
 		"test": "jest"
@@ -25,7 +25,7 @@
 			"env": {
 				"ENV": "production"
 			},
-			"command": "webpack --config webpack.config.js --progress"
+			"command": "webpack --config webpack.config.babel.js --progress"
 		},
 		"optimize": {
 			"env": {
