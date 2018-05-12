@@ -7,6 +7,7 @@ import ColumnSection from '../../components/columnSection';
 import particleJs from '../../components/particle';
 import { interpolate, siteConfigs, baseStyles } from '../../utils';
 import InformationPanel from './information';
+import Steps from './steps';
 
 type Props = {
 	dispatch?: Function,
@@ -31,7 +32,6 @@ export default class HomeScene extends Component {
 	}
 
 	render() {
-
 		const homeConfigs = siteConfigs.home,
 			backgroundPositionInterpolate = interpolate(this.props.pageScrollOffset.y, {
 				inputRange: [0, 500],
@@ -41,25 +41,28 @@ export default class HomeScene extends Component {
 			imageStyle = {
         backgroundPosition: `0 ${backgroundPosition}%`
 		};
+		const underBackgroundPositionInterpolate = interpolate(this.props.pageScrollOffset.y, {
+        inputRange: [500, 800],
+        outputRange: [0, 40]
+      }),
+      underImageStyle = {
+        backgroundPosition: `0 ${underBackgroundPositionInterpolate}%`
+		};
 
 		return <Layout home style={styles.container}>
 			<View style={styles.container}>
         <View id="particle-header" style={[styles.headingContainer, imageStyle]}/>
-				<View style={styles.underImage}/>
+				<View style={[styles.underImage, underImageStyle]}/>
         <InformationPanel homeConfigs={homeConfigs}/>
 			</View>
 
 			<ColumnSection
-				wrapperStyle={{ borderTopWidth: 0, }}
+				wrapperStyle={{ borderTopWidth: 0, paddingVertical: 30 }}
 				configs={homeConfigs.whySection}/>
 
-			<ColumnSection
-				wrapperStyle={styles.darkSectionWrapper}
-				configs={{ dark: true, title: 'DARK SECTION' }}/>
-
-			<ColumnSection
-				wrapperStyle={styles.redSectionWrapper}
-				configs={{ dark: true, title: 'DARK SECTION' }}/>
+			<Steps
+				configs={homeConfigs.stepSection}
+			/>
 		</Layout>;
 	}
 }
@@ -90,7 +93,7 @@ const styles = StyleSheet.create({
 		height: 400,
     backgroundImage: "url('img/ao_dai.jpg')",
     backgroundSize: 'cover',
-    backgroundPosition: '50% 0%',
-    backgroundRepeat: 'repeat',
+    //backgroundPosition: '50% 0%',
+    backgroundRepeat: 'no-repeat',
 	}
 });

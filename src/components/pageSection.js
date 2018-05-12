@@ -47,6 +47,7 @@ const styles = StyleSheet.create({
 	container: {
 		borderTopWidth: 1, borderColor: colors.lineBreak,
 		paddingVertical: 42,
+		paddingHorizontal: 100
 	},
 	titleText: {
 		...baseStyles.text, fontSize: 25, fontWeight: '400',

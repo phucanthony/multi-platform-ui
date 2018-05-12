@@ -11,7 +11,6 @@ export default class InformationPanel extends Component {
   props: Props;
 
   renderRating = (item) => {
-    console.log(item.rating);
     const starArray = new Array(5).fill('star');
     return <View style={styles.ratingContainer}>
       <Text style={styles.ratingText}>Rating</Text>
@@ -90,7 +89,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 27,
     fontWeight: '700',
-    fontFamily: 'Droid Sans'
+    fontFamily: 'Lato'
   },
   descriptionContainer: {
     width: '100%',

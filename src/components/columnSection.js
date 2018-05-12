@@ -46,18 +46,23 @@ type DefaultItemComponentProps = {
 }
 
 function DefaultItemComponent({ instance, index, wowDelay = 0.5 }: DefaultItemComponentProps) {
-	const delay = `${index * wowDelay}s`;
+	const delay = `${index * wowDelay}s`,
+		overrideStyles = {
+		 marginLeft: index === 0 ? 0 : 20
+		};
 
 	return <View
 		className="wow fadeIn" data-wow-delay={delay}
-		style={styles.sectionColumnContainer}>
+		style={[styles.sectionColumnContainer, overrideStyles]}>
 		{instance.icon && <Icon style={styles.columnIcon} name={instance.icon}/>}
 
 		{instance.heading && <Text style={styles.columnHeadingText}>
 			{instance.heading}</Text>}
-
-		{instance.description && <Text style={styles.columnDescriptionText}>
-			{instance.description}</Text>}
+    <View style={{ paddingHorizontal: 60 }}>
+      {instance.description && <Text style={styles.columnDescriptionText}>
+        {instance.description}</Text>}
+    </View>
+		<View style={styles.borderSection}/>
 	</View>;
 }
 
@@ -69,17 +74,31 @@ const styles = StyleSheet.create({
 		flexDirection: 'row', flexWrap: 'wrap',
 	},
 	sectionColumnContainer: {
-		flex: 1, minWidth: 300,
-		paddingHorizontal: 30, marginBottom: 60,
+		flex: 1, minWidth: 200,
+		paddingHorizontal: 25, marginBottom: 30,
+    backgroundColor: '#E7E9EE',
+		paddingVertical: 10,
+		paddingTop: 20,
+		paddingBottom: 50,
+		alignItems: 'center'
 	},
 	columnIcon: {
-		fontSize: 50, textAlign: 'center', marginBottom: 18,
+		fontSize: 75, textAlign: 'center', marginBottom: 18, color: '#6DB7B3'
 	},
 	columnHeadingText: {
 		...baseStyles.text, fontSize: 18, fontWeight: '600',
-		textAlign: 'center', marginBottom: 30,
+		textAlign: 'center', marginBottom: 30, color: '#6DB7B3'
 	},
 	columnDescriptionText: {
-		...baseStyles.text, textAlign: 'center', fontSize: 14,
+		...baseStyles.text, textAlign: 'center', fontSize: 14, lineHeight: 30
 	},
+	borderSection: {
+		position: 'absolute',
+		bottom: 20,
+		width: '70%',
+		height: 4,
+		marginTop: 30,
+		borderRadius: 5,
+		backgroundColor: '#6DB7B3'
+	}
 });

@@ -12,7 +12,7 @@ export const platformFonts = utils.isWeb ? { fontFamily: '"Open Sans", sans-seri
 export const iStyles = StyleSheet.create({
 	text: baseStyles.text,
 	contentContainer: {
-		width: '100%', maxWidth: sizes.maxContentWidth,
+		width: '100%',
 		margin: 'auto',
 	},
 });

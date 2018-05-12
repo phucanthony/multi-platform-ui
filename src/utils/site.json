@@ -72,6 +72,10 @@
 					"description": "Our tours are variable in both quality and quantity. Discover the beauty of nature, learn about the history and understand the long-lived tradition of Vietnam in the way you want."
 				}
 			]
+		},
+		"stepSection" : {
+			"title": "How can you connect with us ?",
+			"subtitle": "Easy to go everywhere"
 		}
 	}
 }

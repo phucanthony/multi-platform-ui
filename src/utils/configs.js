@@ -4,7 +4,7 @@ import siteConfigsImport from './site.json';
 export const tinyColor = tinyColorImport;
 export const siteConfigs = siteConfigsImport;
 
-const main = '#de4f4f';
+const main = '#6DB7B3';
 const secondary = '#4A90E2';
 const lineBreak = '#d5d8df';
 
