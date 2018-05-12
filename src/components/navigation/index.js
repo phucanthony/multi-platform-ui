@@ -29,7 +29,7 @@ export default class NavigationBar extends Component {
 	props: Props;
 
 	render() {
-		const transparent = this.props.home && this.props.pageScrollOffset.y <= 10;
+		const transparent = this.props.home && this.props.pageScrollOffset.y <= 800;
 
 		return <View style={[styles.container, this.props.style]}>
 			{this.renderLogo(transparent)}
@@ -44,6 +44,7 @@ export default class NavigationBar extends Component {
 		} : {};
 
 		return <TouchableOpacity
+      className={transparent ? 'navigationLogo-trans' : 'navigationLogo'}
 			style={[styles.logoContainer, containerStyle]}
 			onPress={() => { this.props.dispatch(push('/')); }}>
 			<EntypoIcon name="circular-graph" style={styles.ruuiIcon}/>
@@ -92,8 +93,7 @@ const styles = StyleSheet.create({
 	logoContainer: {
 		flexDirection: 'row', alignItems: 'center',
 		paddingHorizontal: edgeSpacing,
-		backgroundColor: colors.main,
-		borderBottomWidth: 2, borderColor: colors.lighten(colors.main, 10),
+		borderBottomWidth: 2, borderColor: colors.lighten('#53B9B4', 10),
 	},
 	ruuiIcon: {
 		fontSize: 26, color: '#ffffff',

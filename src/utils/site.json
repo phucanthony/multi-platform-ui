@@ -1,21 +1,18 @@
 {
-	"siteName": "ROOXIM CS",
+	"siteName": "inUS VIETNAM",
 	"libraryName": "Nope",
 	"ruuiVersion": "0.0.73",
 	"repoUrl": "https://github.com/cloudle/ruui",
 	"menus": [
 		{
-			"title": "OUR PRODUCTS",
+			"title": "WHY US",
 			"uri": "products"
 		}, {
-			"title": "ABOUT",
+			"title": "TRAVELS",
 			"uri": "about"
 		}, {
-			"title": "BLOG",
+			"title": "CONTACT",
 			"uri": "blog"
-		}, {
-			"title": "JOIN US",
-			"uri": "join-us"
 		}
 	],
 	"footer": {
@@ -23,36 +20,56 @@
 		"license": "Something (content) here..",
 		"company": {
 			"type": "link",
-			"text": "Rooxim INC",
-			"link": "https://www.rooxim.com"
+			"text": "InusVietnam",
+			"link": "https://www.inusvietnam.com"
 		}
 	},
 	"home": {
-		"heading": {
-			"heading": "WRITE UI ONCE (JAVASCRIPT)",
-			"largeHeading": "RUN EVERYWHERE!",
-			"description": "on Web, Node (server side rendering), Native Mobile, Windows Universal, Mac, Linux..",
-			"install": "TRY IT NOW",
-			"version": "Version",
-			"tutorial": "TUTORIALS"
-		},
-		"": [],
+		"travelSection": [
+			{
+				"isSide": true,
+				"image": "url('img/ben_thanh.jpg')",
+				"title": "BEN THANH",
+				"subTitle": "Market",
+				"description": "Being a bustling market in the daytime and a social center after sunset, Ben Thanh Market is absolutely a must-see attraction of the most dynamic city of Vietnam.",
+				"rating": 4,
+				"mainColor": "#D2A962"
+			},
+			{
+				"isSide": false,
+				"image": "url('img/cu_chi.jpeg')",
+				"title": "CU CHI",
+				"subTitle": "Tunnels",
+				"description": "Don’t worry if you don’t fancy squeezing into the tunnels yourself – it’s not for everyone and it certainly won’t take away from your Cu Chi Tunnels experience if you don’t!",
+				"rating": 5,
+				"mainColor": "#BC8393"
+			},
+			{
+				"isSide": true,
+				"image": "url('img/mekong_delta.jpeg')",
+				"title": "MEKONG DELTA",
+				"subTitle": "Tour",
+				"description": "This tour involves a two-hour drive from Ho Chi Minh City, which is a little more than some tours. Bear in mind it’s worth the extra distance to get further off the tourist track.",
+				"rating": 4,
+				"mainColor": "#6FADC3"
+			}
+		],
 		"whySection": {
-			"title": "WHY UNIVERSAL UI?",
+			"title": "EXPLORE AND TRY OUR COMMUNITY",
 			"wowDelay": 0.5,
 			"columns": [
 				{
-					"icon": "trophy",
-					"heading": "Write once, run everywhere!",
-					"description": "Build your cross-platform application that run almost everywhere with one single javascript code-base.\n(Browser, Node.js server-side-rendering, iOs, Android, Windows Universal...)"
+					"icon": "calendar",
+					"heading": "Convenience Booking",
+					"description": "Just only one click from our application, you can go everywhere you want. Our application helps building the connection between us and travellers."
+				}, {
+					"icon": "user",
+					"heading": "Professional Guiders",
+					"description": "Our tour guiders are friendly, knowledgeable and enthusiasm. Connect to us for the thorough understanding of Vietnamese people's hospitality."
 				}, {
 					"icon": "camera",
-					"heading": "Native and performant",
-					"description": "Unlike Cordova, Universal UI use React Native on iOs and Android build.. which close to Native Mobile application, it is much faster and easier to integrate with Native Mobile modules."
-				}, {
-					"icon": "trophy",
-					"heading": "Universal components",
-					"description": "Universal UI give you all essential structure/components you need for Mobile or Web application, you don't have to waste time on picking from tons of library out there and make them work together."
+					"heading": "Attractive Tours",
+					"description": "Our tours are variable in both quality and quantity. Discover the beauty of nature, learn about the history and understand the long-lived tradition of Vietnam in the way you want."
 				}
 			]
 		}

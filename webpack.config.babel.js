@@ -6,8 +6,8 @@ const path = require('path'),
 	ProgressBarPlugin = require('progress-bar-webpack-plugin'),
 	env = process.env.ENV || 'development',
 	optimizeMode = process.env.OPTIMIZE !== undefined,
-	port = process.env.PORT || 3000, publicPath = 'http://localhost:3000/',
-	isProduction = env === 'production',
+  isProduction = env === 'production',
+	port = process.env.PORT || 3000, publicPath = isProduction ? '/' : 'http://localhost:3000/',
 	htmlOptions = { isProduction, publicPath, useVendorChunks: false },
 	optionalPlugins = [];
 
