@@ -12,6 +12,7 @@ type Props = {
 	children?: Element,
 	style?: Style,
 	home?: Boolean,
+	match ?: Object
 };
 
 @enterAnimation()

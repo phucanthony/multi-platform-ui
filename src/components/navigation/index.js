@@ -68,11 +68,6 @@ export default class NavigationBar extends Component {
 					textStyle={itemTextStyle}
 					onPress={this.onNavigate}/>;
 			})}
-			<TouchableOpacity
-				style={styles.githubIconContainer}
-				onPress={() => { window.open(siteConfigs.repoUrl); }}>
-				<GithubIcon color={iconColor}/>
-			</TouchableOpacity>
 		</View>;
 	};
 

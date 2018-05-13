@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, Text, Image, } from 'react-native';
-import { connect, Button, } from 'react-universal-ui';
+import { connect, Button, utils } from 'react-universal-ui';
 
 import Layout from '../../components/layout';
 import ColumnSection from '../../components/columnSection';
@@ -15,6 +15,7 @@ type Props = {
     x: Number,
     y: Number,
   },
+	match ?: Object
 };
 
 @connect(({ app }) => {
@@ -48,8 +49,7 @@ export default class HomeScene extends Component {
       underImageStyle = {
         backgroundPosition: `0 ${underBackgroundPositionInterpolate}%`
 		};
-
-		return <Layout home style={styles.container}>
+		return <Layout home style={styles.container} match={this.props.match}>
 			<View style={styles.container}>
         <View id="particle-header" style={[styles.headingContainer, imageStyle]}/>
 				<View style={[styles.underImage, underImageStyle]}/>

@@ -6,5 +6,5 @@ export function interpolate(inputNumber, { inputRange, outputRange }) {
   } else if (inputNumber >= lastInput) {
     return lastOutput;
   }
-  return ((inputNumber - firstInput) * ((lastOutput - firstOutput) / (lastInput - firstInput)));
+  return (((inputNumber - firstInput) * ((lastOutput - firstOutput) / (lastInput - firstInput)))) + firstOutput;
 }

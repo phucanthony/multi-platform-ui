@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, Text, } from 'react-native';
+import { connect } from 'react-universal-ui';
+
 import Icon from './vector-icons/EvilIcons';
 
 import PageSection from './pageSection';
-import { baseStyles } from '../utils';
+import { baseStyles, interpolate } from '../utils';
 import { Style, Element } from '../typeDefinition';
 
 type Props = {
@@ -16,7 +18,14 @@ type Props = {
 		wowDelay?: Number,
 		columns?: Array<Object>,
 	},
+	dimensions ?: Object
 };
+
+@connect(({ app }) => {
+	return {
+		dimensions: app.dimensions
+	}
+})
 
 export default class WhySection extends Component {
 	props: Props;
@@ -33,7 +42,7 @@ export default class WhySection extends Component {
 			innerStyle={[styles.innerContainer, this.props.innerStyle]}
 			title={configs.title}>
 			{columns.map((column, i) => {
-				return <ItemComponent key={i} instance={column} index={i} wowDelay={wowDelay}/>;
+				return <ItemComponent dimensions={this.props.dimensions} key={i} instance={column} index={i} wowDelay={wowDelay}/>;
 			})}
 		</PageSection>;
 	}
@@ -43,13 +52,21 @@ type DefaultItemComponentProps = {
 	index?: Number,
 	instance?: Object,
 	wowDelay?: Number,
+	dimensions ?: Object
 }
 
-function DefaultItemComponent({ instance, index, wowDelay = 0.5 }: DefaultItemComponentProps) {
-	const delay = `${index * wowDelay}s`,
+function DefaultItemComponent({ instance, index, wowDelay = 0.5, dimensions }: DefaultItemComponentProps) {
+	const window = dimensions.window || {},
+		windowWidth = window.width || 1440,
+		delay = `${index * wowDelay}s`,
 		overrideStyles = {
-		 marginLeft: index === 0 ? 0 : 20
-		};
+			marginLeft: index === 0 ? 0 : 20,
+		}, descriptionStyles = {
+      paddingHorizontal: interpolate(windowWidth, {
+      	inputRange: [750, 1440],
+      	outputRange: [0, 80]
+      })
+		}
 
 	return <View
 		className="wow fadeIn" data-wow-delay={delay}
@@ -58,7 +75,7 @@ function DefaultItemComponent({ instance, index, wowDelay = 0.5 }: DefaultItemCo
 
 		{instance.heading && <Text style={styles.columnHeadingText}>
 			{instance.heading}</Text>}
-    <View style={{ paddingHorizontal: 60 }}>
+    <View style={descriptionStyles}>
       {instance.description && <Text style={styles.columnDescriptionText}>
         {instance.description}</Text>}
     </View>
@@ -71,11 +88,12 @@ const styles = StyleSheet.create({
 
 	},
 	innerContainer: {
-		flexDirection: 'row', flexWrap: 'wrap',
+		flexDirection: 'row'
 	},
 	sectionColumnContainer: {
 		flex: 1, minWidth: 200,
-		paddingHorizontal: 25, marginBottom: 30,
+		paddingHorizontal: 10,
+		marginBottom: 30,
     backgroundColor: '#E7E9EE',
 		paddingVertical: 10,
 		paddingTop: 20,

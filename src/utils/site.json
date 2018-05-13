@@ -6,13 +6,13 @@
 	"menus": [
 		{
 			"title": "WHY US",
-			"uri": "products"
+			"uri": "why-us"
 		}, {
 			"title": "TRAVELS",
-			"uri": "about"
+			"uri": "travels"
 		}, {
 			"title": "CONTACT",
-			"uri": "blog"
+			"uri": "contact"
 		}
 	],
 	"footer": {
@@ -22,7 +22,23 @@
 			"type": "link",
 			"text": "InusVietnam",
 			"link": "https://www.inusvietnam.com"
-		}
+		},
+		"contact": {
+			"tel": "(028) 123 456 789",
+			"mail": "support@inusvietnam.com"
+		},
+		"navigation": [
+			{
+				"title": "Why Us",
+				"uri": "why-us"
+			}, {
+				"title": "Travels",
+				"uri": "travels"
+			}, {
+				"title": "Contact",
+				"uri": "contact"
+			}
+		]
 	},
 	"home": {
 		"travelSection": [
@@ -75,7 +91,22 @@
 		},
 		"stepSection" : {
 			"title": "How can you connect with us ?",
-			"subtitle": "Easy to go everywhere"
+			"subtitle": "Easy to go everywhere",
+			"step" : [
+				{
+					"title": "Choose your tour",
+					"description": "Our tours are variable and easy to choose. Don't forget to consider the length, the destination and the features the tour provides."
+				}, {
+					"title": "Book your tour",
+					"description": "Check your timetable, your arrival and pickup location, and book through our application."
+				}, {
+					"title": "Follow up your partner",
+					"description": "Your tour guider will contact you and confirm your booking, then you will be guided thoroughly from the beginning to the end of your tour."
+				}, {
+					"title": "Enjoy your tour",
+					"description": "You can share your tour with your friends, and rate our tours in order to enhancing the experience of other travellers."
+				}
+			]
 		}
 	}
 }
