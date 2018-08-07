@@ -1,20 +1,19 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import { utils, connect, ContextProvider, Modal, Snackbar, Dropdown, } from 'react-universal-ui';
-import { Switch, Route, StaticRouter } from 'react-router';
-import { ConnectedRouter } from 'react-router-redux';
+import { View, Text, StyleSheet, Platform } from 'react-native';
+import { utils, connect, ContextProvider, Modal, Snackbar, Dropdown, Button } from 'react-universal-ui';
 import { hot } from 'react-hot-loader';
 
-import HomeScene from './scenes/home';
-// import Blog from './scenes/blog';
-import OurProductScene from './scenes/ourProducts';
-import AboutScene from './scenes/about';
-import JoinUsScene from './scenes/join';
-import NotFoundScene from './scenes/notFound';
-
 import { store } from './store';
-import { history } from './store/reducers';
 import * as appActions from './store/action/app';
+
+const instructions = Platform.select({
+  ios: 'Press Cmd+R to reload,\n' +
+  'Cmd+D or shake for dev menu',
+  android: 'Double tap R on your keyboard to reload,\n' +
+  'Shake or press menu button for dev menu',
+  web: 'Command/Control+R to reload your browser :p\n' +
+  '\nAnd in Browser, we have great advantage\nwhen using Chrome Developer Tool\ncompare to the poor native-dev-menu!',
+});
 
 type Props = {
 	ssrLocation?: string,
@@ -30,51 +29,31 @@ type Props = {
 })
 
 class App extends Component {
-	props: Props;
+  props: Props;
 
-	componentDidMount() {
-		window.addEventListener('scroll', this.onPageScroll);
-	}
+  render() {
+    return <View style={styles.container}>
+      <Text style={styles.welcome}>
+        Welcome to Universal Ui
+      </Text>
+      <Text style={styles.instructions}>
+        To get started, edit src/index.js
+      </Text>
+      <Text style={styles.instructions}>
+        {instructions}
+      </Text>
+      <Button
+        wrapperStyle={styles.buttonWrapper}
+        title={`Increase counter [${this.props.counter}]`}
+        tooltip="Increase counter.."
+        tooltipDirection="top"
+        onPress={this.increaseCounter}/>
+    </View>;
+  }
 
-	componentWillUnmount() {
-		window.removeEventListener('scroll', this.onPageScroll);
-	}
-
-	render() {
-		const Router = utils.isServer ? StaticRouter : ConnectedRouter,
-			routerProps = utils.isServer ? {
-				location: this.props.ssrLocation,
-				context: this.props.ssrContext,
-			} : { history, };
-
-		return <View style={styles.container}>
-			<Router {...routerProps}>
-				<Switch>
-					<Route exact path="/" component={HomeScene}/>
-					{/*<Route exact path="/blog" component={BlogScene}/>*/}
-					<Route path="/why-us" component={OurProductScene}/>
-					<Route path="/travels" component={AboutScene}/>
-					<Route path="/contact" component={JoinUsScene}/>
-					<Route component={NotFoundScene}/>
-				</Switch>
-			</Router>
-
-			<Modal/>
-			<Dropdown/>
-			<Snackbar/>
-		</View>;
-	}
-
-	onPageScroll = () => {
-		const supportPageOffset = window.pageXOffset !== undefined,
-			isCSS1Compat = ((document.compatMode || '') === 'CSS1Compat'),
-			scroll = {
-				x: supportPageOffset ? window.pageXOffset : (isCSS1Compat ? document.documentElement.scrollLeft : document.body.scrollLeft),
-				y: supportPageOffset ? window.pageYOffset : (isCSS1Compat ? document.documentElement.scrollTop : document.body.scrollTop),
-			};
-
-		this.props.dispatch(appActions.setPageScrollOffset(scroll));
-	};
+  increaseCounter = () => {
+    this.props.dispatch(appActions.increaseCounter());
+  };
 }
 
 type ContainerProps = {
@@ -92,7 +71,27 @@ export default utils.isBrowser
 	? hot(module)(AppContainer) : AppContainer;
 
 const styles = StyleSheet.create({
-	container: {
-
-	},
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  welcome: {
+    fontSize: 20,
+    textAlign: 'center',
+    margin: 10,
+  },
+  instructions: {
+    textAlign: 'center',
+    color: '#333333',
+    marginBottom: 5,
+  },
+  buttonWrapper: {
+    backgroundColor: '#00bcd4',
+    marginTop: 20,
+  },
+  buttonIcon: {
+    fontSize: 28,
+    color: '#ffffff',
+  },
 });
